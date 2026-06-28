@@ -5,11 +5,21 @@ console = Console()
 API_URL = "http://localhost:3000"
 
 def pesquisa_avancada():
-    console.print("\n[bold yellow]--- Pesquisa Avançada de Produtos ---[/bold yellow]")
+    console.print("\n[bold #FFAF00]─── Pesquisa Avancada de Produtos ───[/bold #FFAF00]")
     termo = input("Digite parte do nome do produto: ").lower()
-    preco_maximo = float(input("Digite o preço máximo (ou 0 para ignorar): "))
     
-    produtos = requests.get(f"{API_URL}/produtos").json()
+    try:
+        preco_maximo = float(input("Digite o preco maximo (ou 0 para ignorar): "))
+    except ValueError:
+        console.print("\n[bold #FF005F]Valor invalido para o preco. Retornando ao menu...[/bold #FF005F]")
+        return
+    
+    try:
+        produtos = requests.get(f"{API_URL}/produtos").json()
+    except requests.exceptions.RequestException:
+        console.print("\n[bold #FF005F]Erro ao conectar com o banco de dados. Retornando ao menu...[/bold #FF005F]")
+        return
+
     resultados = []
     
     for p in produtos:
@@ -19,8 +29,13 @@ def pesquisa_avancada():
         if match_nome and match_preco:
             resultados.append(p)
             
-    if resultados:
+    if len(resultados) > 0:
+        console.print("\n[bold #50C878]Resultados Encontrados:[/bold #50C878]")
         for r in resultados:
-            console.print(f"Encontrado: {r['nome']} - R$ {r['preco']}")
-    else:
-        console.print("[red]Nenhum produto encontrado com esses critérios.[/red]")
+            console.print(f"[#FFB6C1]{r['nome']}[/] - [#50C878]R$ {r['preco']}[/]")
+            
+    if len(resultados) == 0:
+        if termo != "":
+            console.print(f"\n[bold #FF005F]O produto '{termo}' nao foi achado.[/bold #FF005F]")
+        else:
+            console.print("\n[bold #FF005F]Nenhum produto foi achado com esses criterios.[/bold #FF005F]")

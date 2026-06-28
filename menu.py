@@ -1,7 +1,5 @@
 from rich.console import Console
 from rich.prompt import Prompt
-
-# Importando as funções dos seus respectivos arquivos isolados
 from func.categorias import gerenciar_categorias
 from func.produtos import gerenciar_produtos
 from func.pesquisa import pesquisa_avancada
@@ -13,16 +11,16 @@ console = Console()
 
 def menu():
     while True:
-        console.print("\n[bold white on black] --- MENU DO SISTEMA --- [/bold white on black]")
-        console.print("1. Gerenciar Categorias (Tabela Auxiliar)")
-        console.print("2. Gerenciar Produtos (Tabela Principal)")
-        console.print("3. Pesquisa Avançada")
-        console.print("4. Gráfico Comparativo")
-        console.print("5. Gerar Página Web")
-        console.print("6. Gerar Backup (CSV)")
-        console.print("0. Sair")
+        console.print("\n[bold #FFFFFF on #4B0082] MENU DO SISTEMA [/bold #FFFFFF on #4B0082]")
+        console.print("[#00D7FF]1.[/] Gerenciar Categorias")
+        console.print("[#00D7FF]2.[/] Gerenciar Produtos")
+        console.print("[#00D7FF]3.[/] Pesquisa Avancada")
+        console.print("[#00D7FF]4.[/] Grafico Comparativo")
+        console.print("[#00D7FF]5.[/] Gerar Pagina Web")
+        console.print("[#00D7FF]6.[/] Gerar Backup (CSV)")
+        console.print("[#FF005F]0.[/] Sair")
         
-        opcao = Prompt.ask("Escolha uma opção", choices=["0", "1", "2", "3", "4", "5", "6"])
+        opcao = Prompt.ask("\n[bold #FFAF00]Escolha uma opcao[/]")
         
         if opcao == "1": gerenciar_categorias()
         elif opcao == "2": gerenciar_produtos()
@@ -31,7 +29,7 @@ def menu():
         elif opcao == "5": gerar_pagina_web()
         elif opcao == "6": gerar_backup()
         elif opcao == "0":
-            console.print("[bold red]Saindo do sistema...[/bold red]")
+            console.print("[bold #FF005F]Encerrando o sistema.[/bold #FF005F]")
             break
 
 if __name__ == "__main__":

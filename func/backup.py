@@ -6,9 +6,11 @@ console = Console()
 API_URL = "http://localhost:3000"
 
 def gerar_backup():
+    console.print("\n[bold #00D7FF]─── Gerar Backup CSV ───[/bold #00D7FF]")
     produtos = requests.get(f"{API_URL}/produtos").json()
+    
     if not produtos:
-        console.print("[red]Não há dados para fazer backup.[/red]")
+        console.print("[bold #FF005F]Nao ha dados para fazer backup.[/bold #FF005F]")
         return
         
     chaves = produtos[0].keys()
@@ -18,4 +20,4 @@ def gerar_backup():
         dict_writer.writeheader()
         dict_writer.writerows(produtos)
         
-    console.print("[green]Backup realizado com sucesso no arquivo 'backup_produtos.csv'![/green]")
+    console.print("[bold #50C878]Backup realizado com sucesso no arquivo 'backup_produtos.csv'![/bold #50C878]")
