@@ -1,0 +1,10 @@
+{
+  "categorias": [
+    { "id": "1", "nome": "Eletrônicos" },
+    { "id": "2", "nome": "Móveis" }
+  ],
+  "produtos": [
+    { "id": "1", "nome": "Notebook", "preco": 3500.00, "quantidade": 10, "categoriaId": "1" },
+    { "id": "2", "nome": "Cadeira de Escritório", "preco": 450.00, "quantidade": 5, "categoriaId": "2" }
+  ]
+}

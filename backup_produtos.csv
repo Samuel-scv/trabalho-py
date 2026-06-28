@@ -1,0 +1,3 @@
+id,nome,preco,quantidade,categoriaId
+1,Notebook,3500,10,1
+2,Cadeira de Escritório,450,5,2
